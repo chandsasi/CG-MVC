@@ -1,0 +1,37 @@
+﻿@model MvcMusicStore.Models.Album
+
+@{
+    ViewBag.Title = "EditAlbum";
+}
+
+<h2>EditAlbum</h2>
+
+@using (Html.BeginForm())
+{
+    <h1>Editing album: @Html.DisplayFor(a => a.Title)</h1>
+
+    <p>
+        Enter new price for album: @Html.TextBoxFor(a => a.Price)
+    </p>
+
+    <p>
+        Enter new album art url: @Html.TextBoxFor(a =>
+a.AlbumArtUrl)
+    </p>
+
+    <p>
+        Genre: @Html.DisplayFor(a => a.Genre.GenreName)
+        @Html.HiddenFor(a => a.GenreId)
+
+    </p>
+
+    <p>
+        Artist: @Html.DisplayFor(a => a.Artist.ArtistName)
+        @Html.HiddenFor(a => a.ArtistId)
+
+    </p>
+
+    <input type="submit" value="Save Modifications" />
+}
+
+

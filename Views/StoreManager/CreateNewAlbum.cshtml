@@ -1,0 +1,43 @@
+﻿@model MvcMusicStore.Models.Album
+
+@{
+    ViewBag.Title = "CreateNewAlbum";
+}
+
+<h2>CreateNewAlbum</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Album Title: @Html.TextBoxFor(a => a.Title)
+    </p>
+
+    <p>
+        Price: @Html.TextBoxFor(a => a.Price)
+    </p>
+
+    <p>
+        Album Art Url: @Html.TextBoxFor(a => a.AlbumArtUrl)
+    </p>
+
+    MvcMusicStore.Models.MusicStoreContext c = new
+        MvcMusicStore.Models.MusicStoreContext();
+    SelectList allgenres = new SelectList(c.AllGenres, "GenreId",
+        "GenreName");
+    SelectList allartists = new SelectList(c.AllArtists, "ArtistId",
+        "ArtistName");
+
+    <p>
+        Genre: @Html.DropDownListFor(a => a.GenreId, allgenres)
+    </p>
+
+    <p>
+        Artist: @Html.DropDownListFor(a => a.ArtistId, allartists)
+    </p>
+
+    <input type="submit" value="Save Details" />
+}
+<div class="col-sm-4">
+    @Html.ActionLink("Back to Album List", "Index")
+</div>
+

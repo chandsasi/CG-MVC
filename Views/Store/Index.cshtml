@@ -1,0 +1,34 @@
+﻿@model IEnumerable<MvcMusicStore.Models.Genre>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3>Browse Genres</h3>
+<p>
+    Select from @Model.Count() genres:
+</p>
+
+<ul>
+    @foreach (var genre in Model)
+    {
+        @*<li>@genre.GenreName</li>*@
+        <li>
+            @Html.ActionLink(genre.GenreName, "Browse", new
+            {
+                genre =
+                genre.GenreName
+            })
+        </li>
+
+    }
+</ul>
+
+<h2>Genre names in a dropdown list</h2>
+@*@Html.DropDownList("GenreDropDown", ViewBag.GenresList as SelectList, "Select Genre")*@
+
+@using (Html.BeginForm("Browse", "Store", FormMethod.Post))
+{
+    @Html.DropDownList("genre", ViewBag.GenresList as SelectList, "Select Genre")
+    <input type="submit" class="btn" value="Browse Genre" />
+}
+

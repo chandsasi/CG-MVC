@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MvcMusicStore.Models.Album>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>List of Albums</h2>
+<h1>Total number of Albums in the list: @Model.Count()</h1>
+<div class="col-sm-4">
+    @Html.ActionLink("Create a new album", "CreateNewAlbum")
+</div>
+    <table width="75%" border="5" cellpadding="5" cellspacing="5">
+        <th>Title</th>
+        <th>Price</th>
+        <th>Album Art Url</th>
+        <th>Genre</th>
+        <th>Artist</th>
+        <th>CRUD Action</th>
+
+        @foreach (var album in Model)
+        {
+            <tr>
+                <td bgcolor="silver">@album.Title</td>
+                <td bgcolor="silver">@album.Price</td>
+                <td bgcolor="silver">@album.AlbumArtUrl</td>
+                <td bgcolor="silver">@album.Genre.GenreName</td>
+                <td bgcolor="silver">@album.Artist.ArtistName</td>
+                <td bgcolor="silver">
+                    @Html.ActionLink("Edit", "EditAlbum", new
+                    { title = @album.Title }) |
+                    @Html.ActionLink("Delete", "DeleteAlbum", new
+                    {
+                        title = @album.Title }, new { onclick = "return confirm('Delete this album?');" })
+
+                </td>
+            </tr>
+        }
+    </table>
+
+
